@@ -1,0 +1,38 @@
+#
+# Your services
+#
+services:
+  app:
+    build: .
+    container_name: your-go-app-container
+    ports:
+      - '8888:8888'
+    environment:
+      - SERVER_URL=:8888
+    # restart: unless-stopped
+  
+  db:
+    image: postgres:16.1
+    container_name: your-go-db-container
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=yourdatabase
+      - POSTGRES_USER=yourusername
+      - POSTGRES_PASSWORD=yourpassword
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
+    # restart: unless-stopped
+
+  # redis:
+  #   image: redis:alpine
+  #   container_name: go-redis
+  #   ports:
+  #     - "6379:6379"
+
+#
+# Your volumes
+#
+# volumes:
+#   postgres_data:
+#     driver: local
